@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+	<title>Quizzes</title>
+    <link rel='stylesheet' type='text/css' href='styles/style.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (min-width: 530px) and (min-device-width: 481px)'
+		   href='styles/wide.css' />
+	<link rel='stylesheet' 
+		   type='text/css' 
+		   media='only screen and (max-width: 480px)'
+		   href='styles/smartphone.css' />
+		 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+			$('#galderenF').submit(function(){
+			
+			
+				if( $('#email').val()=="" || $('#galdera').val()=="" || $('#eranzuzen').val()=="" || $('#eranoker1').val()=="" || $('#eranoker2').val()=="" || 
+					$('#eranoker3').val()=="" || $('#zailtasuna').val()=="" || $('#gaia').val()==""){
+					alert("Eremuren bat falta zaizu betetzeko");
+					return false;
+				}
+			
+				var email = $('#email').val();
+				var mailformat = /^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/;
+				if(!mailformat.test(email)){
+					alert("Okerreko email bat idatzi duzu. Emaila horrela izan behar du: Letrak + 3 zenbaki + @ikasle.ehu.eus");
+					return false;
+				}
+				
+				var gald = $('#galdera').val();
+				if(gald.trim().length<10){
+					alert("Galderak 10 karaktere eduki behar ditu gutxienez");
+					return false;
+				}
+				
+				var zailt = $('#zailtasuna').val();
+				var zailtformat= /^[0-5]{1}$/;
+				if(!zailtformat.test(zailt)){
+					alert("Okerreko zailtasuna sartu duzu. Zailtasuna 0 eta 5 arteko zenbaki batizan behar du.");
+					return false;
+				}
+	
+				alert("Eremu guztiak ondo bete dituzu.");
+				return true;
+			});
+			
+			
+			$('#reset').click(function(){
+				$('#email').val("");
+				$('#galdera').val("");
+				$('#eranzuzen').val("");
+				$('#eranoker1').val("");
+				$('#eranoker2').val("");
+				$('#eranoker3').val("");
+				$('#zailtasuna').val("");
+			});
+			
+		});
+		
+	</script>
+
+
+
+		 
+  </head>
+  <body>
+  <div id='page-wrap'>
+	<header class='main' id='h1'>
+      <span class="right"><a href="/login">LogIn</a> </span>
+      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
+	<h2>Quiz: crazy questions</h2>
+    </header>
+	<nav class='main' id='n1' role='navigation'>
+		<span><a href='layout.html'>Home</a></span>
+		<span><a href='#'>Quizzes</a></span>
+		<span><a href='credits.html'>Credits</a></span>
+		<span><a href='addQuestion.html'>Add questions</a></span>
+		<span><a href='addQuestion5HTML.html'>Add questions HTML5</a></span>
+	</nav>
+    <section class="main" id="s1">
+    
+	
+	<div>
+		<br>
+		<form id="galderenF" name="galderenF" action="php/proba.php" method="post">
+			Emaila(*): <input type="text" id="email" placeholder="xxx000@ikasle.ehu.eus"><br>
+			Questions(*): <input type="text" id="galdera" placeholder="10 karaktere gutxienez"><br>
+			Correct answer(*): <input type="text" id="eranzuzen"><br>
+			Incorrect answer1(*): <input type="text" id="eranoker1"><br>
+			Incorrect answer2(*): <input type="text" id="eranoker2"><br>
+			Incorrect answer3(*): <input type="text" id="eranoker3"><br><br>
+			Difficulty(*): <input type="text" id="zailtasuna" placeholder="Zailtasuna 0-5 artekoa"><br>
+			Subject(*): <input type="text" id="gaia"><br><br>
+			Picture: HTML5 erabili irudiak kargatzeko <br><br><br>
+			
+			<input type="button" value="Reset" id="reset">
+			
+			<input type="submit" value="Send queston" id="send">
+		</form>
+		<br><br><br>
+		<p><a href=proba.php>>>>Ikusi bisitarien iruzkinak</a></p>
+		<br><br><br>
+	</div>
+    </section>
+	<footer class='main' id='f1'>
+		 <a href='https://github.com'>Link GITHUB</a>
+	</footer>
+</div>
+</body>
+</html>
