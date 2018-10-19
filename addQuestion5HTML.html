@@ -50,23 +50,23 @@
 	
 	<div>
 		<br>
-		<form id="galderenF" name="galderenF" action="php/proba.php" method="post">
-			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
-			Questions(*): <input type="text" id="galdera" pattern="([a-zA-Z].*){10,}" placeholder="10 karaktere gutxienez" required><br>
-			Correct answer(*): <input type="text" id="eranzuzen" required><br>
-			Incorrect answer1(*): <input type="text" id="eranoker1" required><br>
-			Incorrect answer2(*): <input type="text" id="eranoker2" required><br>
-			Incorrect answer3(*): <input type="text" id="eranoker3" required><br><br>
-			Difficulty(*): <input type="text" id="zailtasuna" pattern="[0-5]{1}" placeholder="Zailtasuna 0-5 artekoa" required><br>
-			Subject(*): <input type="text" id="gaia" required><br><br>
-			Picture: <input type="file" id="argazkia"><br><br><br>
+		<form id="galderenF" name="galderenF" action="php/addQuestion.php" method="post">
+			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
+			Questions(*): <input type="text" id="galdera" name="galdera" pattern="[a-zA-Z].{9,}" placeholder="10 karaktere gutxienez" required><br>
+			Correct answer(*): <input type="text" id="eranzuzen" name="eranzuzen" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer1(*): <input type="text" id="eranoker1" name="eranoker1" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer2(*): <input type="text" id="eranoker2" name="eranoker2" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer3(*): <input type="text" id="eranoker3" name="eranoker3" pattern="[a-zA-Z].*" required><br><br>
+			Difficulty(*): <input type="text" id="zailtasuna" name="zailtasuna"pattern="[0-5]{1}" placeholder="Zailtasuna 0-5 artekoa" required><br>
+			Subject(*): <input type="text" id="gaia" name="gaia"required><br><br>
+			Picture: <input type="file" id="argazkia" name="argazkia"><br><br><br>
 			
 			<input type="reset" value="Reset" id="reset">
 			
 			<input type="submit" value="Send queston" id="send">
 		</form>
 		<br><br><br>
-		<p><a href=proba.php>>>>Ikusi bisitarien iruzkinak</a></p>
+		<p><a href=php/showQuestions.php>>>>Ikusi bisitarien iruzkinak</a></p>
 		<br><br><br>
 	</div>
     </section>
