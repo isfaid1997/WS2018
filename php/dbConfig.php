@@ -5,7 +5,7 @@
 	if($local){
 		$zerbitzaria="localhost";
 		$erabiltzailea="id7176205_egoisa";
-		$gakoa= "";
+		$gakoa= "egoisa1997";
 		$db="id7176205_quiz";		
 	}else{
 		$zerbitzaria="localhost";
