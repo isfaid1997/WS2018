@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -25,17 +20,19 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-      <span class="right" style="display:none;" ><a href="logIn.php">LogIn</a> </span>
-	  <span class="right" style="display:none;" ><a href="signUp.php">SignUp</a> </span>
       <span class="right"><a href="logOut.php">LogOut</a> </span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='layoutR.php'>Home</a></span>
-		<span><a href='showQuestions.php?log=1'>Quizzes</a></span>
+		<span>Quizzes</span>
 		<span><a href='credits.php?log=1'>Credits</a></span>
 		<span><a href='../addQuestion.html'>Add questions</a></span>
 		<span><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
+		<span><a href='showQuestions.php'>ShowQuestions</a></span>
+		<span><a href='../xml/questions.xml'>XML questions</a></span>
+		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
+		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
 	</nav>
     <section class="main" id="s1">
     
@@ -43,7 +40,8 @@
 	<div>
 		
 		Do you want to log out?<br>
-		<input type="submit" value="LogOut" id="irten" onclick="location.href='../layout.html'">
+		<input type="submit" value="Yes" id="irten" onclick="location.href='../layout.html'">
+		<input type="submit" value="No" id="geratu" onclick="location.href='layoutR.php'">
 	</div>
     </section>
 	<footer class='main' id='f1'>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="showXMLQuestions.xsl"?>
+
+<assessmentItems>
+	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody> 
+			<p>Zein Amanita da jangarria?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Caesarea</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Phalloides</value>
+			<value>Muscaria</value>
+			<value>Virosa</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="rosa001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody> 
+			<p>Onddoek zer dute kapela azpian?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Himenioa</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Filamenduak</value>
+			<value>Eztenak</value>
+			<value>Hodiak</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="mafalda001@ikasle.ehu.eus" subject="mikologia">
+		<itemBody>
+			<p>Eranztuna du</p>
+		</itemBody>
+		<correctResponse>
+			<value>Galanpernak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Gibel urdinak</value>
+			<value>Esnegorriak</value>
+			<value>Errotariak</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem author="ego321@ikasle.ehu.eus" subject="Bomberman">
+		<itemBody>
+			<p>Nola du izena Bomberman zuriak?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Shirobon</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Akabon</value>
+			<value>Kiirobon</value>
+			<value>Kurobon</value>
+		</incorrectResponses>
+	</assessmentItem>
+</assessmentItems>

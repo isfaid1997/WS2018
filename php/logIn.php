@@ -55,10 +55,8 @@
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='../layout.html'>Home</a></span>
-		<span><a href='showQuestions.php?log=0'>Quizzes</a></span>
+		<span>Quizzes</span>
 		<span><a href='credits.php?log=0'>Credits</a></span>
-		<span style="display:none;"><a href='../addQuestion.html'>Add questions</a></span>
-		<span style="display:none;"><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
 	</nav>
     <section class="main" id="s1">
     

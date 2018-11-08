@@ -1,5 +1,6 @@
 
 
+
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -23,13 +24,13 @@
   <div id='page-wrap'>
 	<header class='main' id='h1'>
 	
-      
+  
 		 <span class="right"><a href="logOut.php">LogOut</a> </span>
+
 	
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-	
 	
 	
 		<span><a href='layoutR.php'>Home</a></span>
@@ -37,10 +38,11 @@
 		<span><a href='credits.php?log=1'>Credits</a></span>
 		<span><a href='../addQuestion.html'>Add questions</a></span>
 		<span><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php?log=1'>ShowQuestions</a></span>
+		<span><a href='showQuestions.php'>ShowQuestions</a></span>
 		<span><a href='../xml/questions.xml'>XML questions</a></span>
 		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
 		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
+		
 
 	
 	</nav>
@@ -70,9 +72,11 @@
 		
 		
 		
-		echo "<table border=1> <tr> <th>EMAILA</th> <th>GALDERA</th> <th>ERANTZUNZUZEN</th> <th>ERANOKER1</th> </tr>";
-		while($row= $ema->fetch_array(MYSQLI_ASSOC)){
-			echo"<tr><td>".$row['ema']."</td> <td>".$row['ques']."</td> <td>".$row['ca']."</td> <td>".$row['ia1']."</td></tr>"; 
+		echo "<table border=1> <tr> <th>EMAILA</th> <th>GALDERA</th> <th>ERANTZUNZUZEN</th></tr>";
+		
+		$quiz = simplexml_load_file('../xml/questions.xml');
+		foreach($quiz->assessmentItem as $qui){
+			echo"<tr><td>".$qui['author']."</td><td>".$qui->itemBody->p."</td> <td>".$qui->correctResponse->value."</td></tr>"; 
 		}
 		echo "</table>";
 		$ema->free();

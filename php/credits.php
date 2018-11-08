@@ -40,16 +40,18 @@
 	
 	<?php if($logeatuta==0){ ?>
 		<span><a href='../layout.html'>Home</a></span>
-		<span><a href='showQuestions.php?log=0'>Quizzes</a></span>
+		<span>Quizzes</span>
 		<span><a href='credits.php?log=0'>Credits</a></span>
-		<span style="display:none;"><a href='../addQuestion.html'>Add questions</a></span>
-		<span style="display:none;"><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
 	<?php }else{ ?>
 		<span><a href='layoutR.php'>Home</a></span>
-		<span><a href='showQuestions.php?log=1'>Quizzes</a></span>
+		<span>Quizzes</span>
 		<span><a href='credits.php?log=1'>Credits</a></span>
 		<span><a href='../addQuestion.html'>Add questions</a></span>
 		<span><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
+		<span><a href='showQuestions.php?log=1'>ShowQuestions</a></span>
+		<span><a href='../xml/questions.xml'>XML questions</a></span>
+		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
+		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
 	<?php } ?>
 	</nav>
     <section class="main" id="s1">

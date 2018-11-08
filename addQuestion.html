@@ -79,17 +79,21 @@
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='php/layoutR.php'>Home</a></span>
-		<span><a href='php/showQuestions.php?log=1'>Quizzes</a></span>
+		<span>Quizzes</span>
 		<span><a href='php/credits.php?log=1'>Credits</a></span>
 		<span><a href='addQuestion.html'>Add questions</a></span>
 		<span><a href='addQuestion5HTML.html'>Add questions HTML5</a></span>
+		<span><a href='php/showQuestions.php'>ShowQuestions</a></span>
+		<span><a href='xml/questions.xml'>XML questions</a></span>
+		<span><a href='php/showXMLquestions.php'>XML questions PHP</a></span>
+		<span><a href='xml/questionsTransAuto.xml'>XML trans auto</a></span>
 	</nav>
     <section class="main" id="s1">
     
 	
 	<div>
 		<br>
-		<form id="galderenF" name="galderenF" action="php/proba.php" method="post">
+		<form id="galderenF" name="galderenF" action="php/addQuestion.php" method="post">
 			Emaila(*): <input type="text" id="email" placeholder="xxx000@ikasle.ehu.eus"><br>
 			Questions(*): <input type="text" id="galdera" placeholder="10 karaktere gutxienez"><br>
 			Correct answer(*): <input type="text" id="eranzuzen"><br>
