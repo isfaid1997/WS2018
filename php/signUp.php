@@ -30,8 +30,8 @@
 		}else{
 	
 	
-			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-			//$linki= new mysqli("localhost","root","","quiz");
+			//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+			$linki= new mysqli("localhost","root","","quiz");
 
 			$sql="INSERT INTO users(email, dei, pass, arg) VALUES
 				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]')";
@@ -100,7 +100,7 @@
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='../layout.html'>Home</a></span>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=0'>Credits</a></span>
+		<span><a href='credits.php?log=null'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
     

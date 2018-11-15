@@ -20,50 +20,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
 		$(document).ready(function(){
+		
 			$('#galderenF').submit(function(){
-			
-			
-				if( $('#email').val()=="" || $('#galdera').val()=="" || $('#eranzuzen').val()=="" || $('#eranoker1').val()=="" || $('#eranoker2').val()=="" || 
-					$('#eranoker3').val()=="" || $('#zailtasuna').val()=="" || $('#gaia').val()==""){
-					alert("Eremuren bat falta zaizu betetzeko");
-					return false;
-				}
-			
-				var email = $('#email').val();
-				var mailformat = /^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/;
-				if(!mailformat.test(email)){
-					alert("Okerreko email bat idatzi duzu. Emaila horrela izan behar du: Letrak + 3 zenbaki + @ikasle.ehu.eus");
-					return false;
-				}
-				
-				var gald = $('#galdera').val();
-				if(gald.trim().length<10){
-					alert("Galderak 10 karaktere eduki behar ditu gutxienez");
-					return false;
-				}
-				
-				var zailt = $('#zailtasuna').val();
-				var zailtformat= /^[0-5]{1}$/;
-				if(!zailtformat.test(zailt)){
-					alert("Okerreko zailtasuna sartu duzu. Zailtasuna 0 eta 5 arteko zenbaki batizan behar du.");
-					return false;
-				}
-	
 				alert("Eremu guztiak ondo bete dituzu.");
 				return true;
 			});
-			
-			
-			$('#reset').click(function(){
-				$('#email').val("");
-				$('#galdera').val("");
-				$('#eranzuzen').val("");
-				$('#eranoker1').val("");
-				$('#eranoker2').val("");
-				$('#eranoker3').val("");
-				$('#zailtasuna').val("");
-			});
-			
+				
 		});
 		
 	</script>
@@ -133,7 +95,7 @@
 			$sql="INSERT INTO questions(ema, ques, ca, ia1, ia2, ia3, dif, sub, pic) VALUES
 				('$_POST[email]' , '$_POST[galdera]' ,'$_POST[eranzuzen]', '$_POST[eranoker1]', 
 				'$_POST[eranoker2]', '$_POST[eranoker3]', '$_POST[zailtasuna]', '$_POST[gaia]', 
-				'')";
+				'$_POST[argazkia]')";
 		
 		
 			if (!$linki->query($sql)) {
@@ -168,17 +130,17 @@
 	}else{ ?>
 		<br>
 		<?php echo "<form id='galderenF' name='galderenF' action='addQuestion.php?log=$logeatuta' method='post'>" ?>
-		<?php echo "Emaila(*): <input type='text' name='email' id='email' value='$logeatuta' placeholder='xxx000@ikasle.ehu.eus' readonly><br>" ?>
-			Questions(*): <input type="text" id="galdera" name="galdera" placeholder="10 karaktere gutxienez"><br>
-			Correct answer(*): <input type="text" id="eranzuzen" name="eranzuzen"><br>
-			Incorrect answer1(*): <input type="text" id="eranoker1" name="eranoker1"><br>
-			Incorrect answer2(*): <input type="text" id="eranoker2" name="eranoker2"><br>
-			Incorrect answer3(*): <input type="text" id="eranoker3" name="eranoker3"><br><br>
-			Difficulty(*): <input type="text" id="zailtasuna" name="zailtasuna"placeholder="Zailtasuna 0-5 artekoa"><br>
-			Subject(*): <input type="text" id="gaia" name="gaia"><br><br>
-			Picture: HTML5 erabili irudiak kargatzeko <br><br><br>
+		<?php echo"Emaila(*): <input type='email' pattern='[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus' id='email' name='email' value='$logeatuta' placeholder='xxx000@ikasle.ehu.eus' required readonly><br>" ?>
+			Questions(*): <input type="text" id="galdera" name="galdera" pattern="[a-zA-Z].{9,}" placeholder="10 karaktere gutxienez" required><br>
+			Correct answer(*): <input type="text" id="eranzuzen" name="eranzuzen" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer1(*): <input type="text" id="eranoker1" name="eranoker1" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer2(*): <input type="text" id="eranoker2" name="eranoker2" pattern="[a-zA-Z].*" required><br>
+			Incorrect answer3(*): <input type="text" id="eranoker3" name="eranoker3" pattern="[a-zA-Z].*" required><br><br>
+			Difficulty(*): <input type="text" id="zailtasuna" name="zailtasuna"pattern="[0-5]{1}" placeholder="Zailtasuna 0-5 artekoa" required><br>
+			Subject(*): <input type="text" id="gaia" name="gaia"required><br><br>
+			Picture: <input type="file" id="argazkia" name="argazkia"><br><br><br>
 			
-			<input type="button" value="Reset" id="reset">
+			<input type="reset" value="Reset" id="reset">
 			
 			<input type="submit" value="Send question" id="send">
 		</form>

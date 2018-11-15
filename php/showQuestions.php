@@ -1,5 +1,8 @@
+<?php
 
-
+	$logeatuta= $_GET['log'];
+	
+?>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -22,9 +25,9 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-	
-      
-		 <span class="right"><a href="logOut.php">LogOut</a> </span>
+		<?php echo "<span class='right'> $logeatuta</span>" ?>
+		</br>
+		 <?php echo "<span class='right'><a href='logOut.php?log=$logeatuta'>LogOut</a> </span>"?>
 	
 	<h2>Quiz: crazy questions</h2>
     </header>
@@ -32,15 +35,16 @@
 	
 	
 	
-		<span><a href='layoutR.php'>Home</a></span>
+		<?php echo "<span><a href='layoutR.php?log=$logeatuta'>Home</a></span>" ?>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=1'>Credits</a></span>
-		<span><a href='../addQuestion.html'>Add questions</a></span>
-		<span><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php?log=1'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
+		<?php echo "<span><a href='credits.php?log=$logeatuta'>Credits</a></span>" ?>
+		<?php echo "<span><a href='addQuestion.php?log=$logeatuta'>Add questions</a></span>" ?>
+		<?php echo "<span><a href='addQuestion5HTML.php?log=$logeatuta'>Add questions HTML5</a></span>" ?>
+		<?php echo "<span><a href='showQuestions.php?log=$logeatuta'>ShowQuestions</a></span>" ?>
+		<?php echo "<span><a href='../xml/questions.xml'>XML questions</a></span>" ?>
+		<?php echo "<span><a href='showXMLquestions.php?log=$logeatuta'>XML questions PHP</a></span>" ?>
+		<?php echo "<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>" ?>
+		<?php echo "<span><a href='handlingQuizesAJAX.php?log=$logeatuta'>Handling Questions</a></span>" ?>
 
 	
 	</nav>
@@ -55,8 +59,8 @@
 		include 'dbConfig.php';
 	
 	
-		$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-		//$linki= new mysqli("localhost","root","","quiz");
+		//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+		$linki= new mysqli("localhost","root","","quiz");
 
 	
 		$sql="SELECT * FROM questions";

@@ -4,8 +4,8 @@
 	if(isset($_POST['email'])){
 		$usr_email=$_POST['email'];
 		include 'dbConfig.php';
-		$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-		//$linki= new mysqli("localhost","root","","quiz");
+		//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+		$linki= new mysqli("localhost","root","","quiz");
 		$usr_pass=$_POST['pasahitz'];
 		$sql="select * FROM users where email='$usr_email' and pass='$usr_pass'";
 		$result= $linki->query($sql);
@@ -16,7 +16,7 @@
 		$linki->close();
 		if ($rows_cnt==1){
 			$rows_cnt=0;
-			header('location: layoutR.php');
+			header('location: layoutR.php?log='.$usr_email);
 		}
 		else{ echo"<script> alert('Authentication failure!') </script>";
 		}
@@ -50,13 +50,12 @@
 	<header class='main' id='h1'>
       <span class="right"><a href="logIn.php">LogIn</a> </span>
 	  <span class="right"><a href="signUp.php">SignUp</a> </span>
-      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
 		<span><a href='../layout.html'>Home</a></span>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=0'>Credits</a></span>
+		<span><a href='credits.php?log=null'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
     

@@ -3,9 +3,6 @@
 	$logeatuta= $_GET['log'];
 	
 ?>
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -27,31 +24,34 @@
 	<header class='main' id='h1'>
 	
 	
-	<?php if($logeatuta==0){ ?>
+	<?php if($logeatuta=='null'){ ?>
 		<span class="right"><a href="logIn.php">LogIn</a> </span>
 		<span class="right"><a href="signUp.php">SignUp</a> </span>
 	<?php }else{ ?>
-		 <span class="right"><a href="logOut.php">LogOut</a> </span>
+		<?php echo "<span class='right'> $logeatuta</span>" ?>
+		</br>
+		 <?php echo "<span class='right'><a href='logOut.php?log=$logeatuta'>LogOut</a> </span>" ?>
 	<?php } ?>
 	
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
 	
-	<?php if($logeatuta==0){ ?>
+	<?php if($logeatuta=='null'){ ?>
 		<span><a href='../layout.html'>Home</a></span>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=0'>Credits</a></span>
+		<span><a href='credits.php?log=null'>Credits</a></span>
 	<?php }else{ ?>
-		<span><a href='layoutR.php'>Home</a></span>
+		<?php echo "<span><a href='layoutR.php?log=$logeatuta'>Home</a></span>" ?>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=1'>Credits</a></span>
-		<span><a href='../addQuestion.html'>Add questions</a></span>
-		<span><a href='../addQuestion5HTML.html'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php?log=1'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
+		<?php echo "<span><a href='credits.php?log=$logeatuta'>Credits</a></span>" ?>
+		<?php echo "<span><a href='addQuestion.php?log=$logeatuta'>Add questions</a></span>" ?>
+		<?php echo "<span><a href='addQuestion5HTML.php?log=$logeatuta'>Add questions HTML5</a></span>" ?>
+		<?php echo "<span><a href='showQuestions.php?log=$logeatuta'>ShowQuestions</a></span>" ?>
+		<?php echo "<span><a href='../xml/questions.xml'>XML questions</a></span>" ?>
+		<?php echo "<span><a href='showXMLquestions.php?log=$logeatuta'>XML questions PHP</a></span>" ?>
+		<?php echo "<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>" ?>
+		<?php echo "<span><a href='handlingQuizesAJAX.php?log=$logeatuta'>Handling Questions</a></span>" ?>
 	<?php } ?>
 	</nav>
     <section class="main" id="s1">
