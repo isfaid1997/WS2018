@@ -1,13 +1,11 @@
 <?php 
 
+	$emailona = false;
+	$pasahitzona = false;
 
 	if(isset($_POST['email'])){
-
-
+		
 		include 'dbConfig.php';
-	
-	
-	
 		if(!preg_match('/^[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus$/',$_POST['email'])){
 			echo "Wrong email!";
 			echo "<p><a href='../layout.html'>HOMEra itzuli</a>";
@@ -27,11 +25,11 @@
 		else if($_POST['pasahitz']!=$_POST['pasahitz2']){
 			echo "Not same password!";
 			echo "<p><a href='../layout.html'>HOMEra itzuli</a>";
-		}else{
+		}else if ($emailona==true && $pasahitzona==true){
 	
 	
-			//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-			$linki= new mysqli("localhost","root","","quiz");
+			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+			//$linki= new mysqli("localhost","root","","quiz");
 
 			$sql="INSERT INTO users(email, dei, pass, arg) VALUES
 				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]')";
@@ -76,13 +74,62 @@
 					alert("Pasahitzak ez dute koiziditzen");
 					return fasle;
 				}
-				alert("Ondo erregistratu zara");
-				return true;
-				
-				
+				<?php if($emailona==true && $pasahitzona==true) {?>
+					alert("Ondo erregistratu zara");
+					return true;
+				<?php }else{ ?>
+					alert("Zerbait ez da baliozkoa");
+					return false;
+				<?php } ?>
 			});
-				
 		});
+		
+	xhro = new XMLHttpRequest();
+	xhro.onreadystatechange=function(){
+		//alert(xhro.readyState);
+		if (xhro.readyState==4 && xhro.status==200){
+			var ema=xhro.responseText;
+			if(ema=="BAI"){
+				<?php $emailona=true; ?>
+				document.getElementById("emaitza").innerHTML= "Emaila BALIOZKOA da";
+			}else{
+				<?php $emailona=false; ?>
+				document.getElementById("emaitza").innerHTML= "Emaila BALIOGABEA da";
+			}
+		}
+			
+	}
+	function egiaztatuEmaila(){
+		var emai = document.getElementById("email").value;
+		xhro.open("GET", "configemail.php?email="+emai, true);
+		xhro.send();
+	}
+	
+	
+	xhro2 = new XMLHttpRequest();
+	xhro2.onreadystatechange=function(){
+		//alert(xhro.readyState);
+		if (xhro2.readyState==4 && xhro2.status==200){
+			var ema=xhro2.responseText;
+			if(ema=="BALIOZKOA"){
+				<?php $pasahitzona=true; ?>
+				document.getElementById("emaitza").innerHTML= "Pasahitz ZUZENA idatzi duzu";
+			}else if(ema=="BALIOGABEA"){
+				<?php $pasahitzona=false; ?>
+				document.getElementById("emaitza").innerHTML= "Pasahitz OKERRA idatzi duzu";
+			}else{
+				<?php $pasahitzona=false; ?>
+				document.getElementById("emaitza").innerHTML= "Zerbitzurik GABE";
+			}
+		}
+			
+	}
+	function egiaztatuPasahitza(){
+		var emai = document.getElementById("pasahitz").value;
+		xhro.open("GET", "configemail.php?pasahitz="+emai, true);
+		xhro.send();
+	}
+	
 		
 	</script>
 	
@@ -104,13 +151,13 @@
 	</nav>
     <section class="main" id="s1">
     
-	
+	<div id="emaitza"></div>
 	<div>
 		<br>
 		<form id="galderenF" name="galderenF" action="signUp.php" method="post">
-			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
+			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" onchange="egiaztatuEmaila()" required><br>
 			Deitura(*): <input type="text" id="deitura" name="deitura" pattern="[A-Z][a-z]*(\s[A-Z][a-z]*)+" placeholder="10 karaktere gutxienez" required><br>
-			Pasahitza(*): <input type="password" id="pasahitz" name="pasahitz" pattern="[a-zA-Z0-9]{8,}" required><br>
+			Pasahitza(*): <input type="password" id="pasahitz" name="pasahitz" pattern="[a-zA-Z0-9]{8,}" onchange="egiaztatuPasahitza()"required><br>
 			Pasahitza errepikatu(*): <input type="password" id="pasahitz2" name="pasahitz2" pattern="[a-zA-Z0-9]{8,}" required><br>
 			Picture: <input type="file" id="argazkia" name="argazkia"><br><br><br>
 			

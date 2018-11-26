@@ -54,8 +54,8 @@
 		include 'dbConfig.php';
 	
 	
-		//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-		$linki= new mysqli("localhost","root","","quiz");
+		$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+		//$linki= new mysqli("localhost","root","","quiz");
 
 	
 		$sql="SELECT * FROM questions";
