@@ -89,8 +89,8 @@
 		}
 		else{
 		
-			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-			//$linki= new mysqli("localhost","root","","quiz");
+			//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+			$linki= new mysqli("localhost","root","","quiz");
 		
 			$sql="INSERT INTO questions(ema, ques, ca, ia1, ia2, ia3, dif, sub, pic) VALUES
 				('$_POST[email]' , '$_POST[galdera]' ,'$_POST[eranzuzen]', '$_POST[eranoker1]', 

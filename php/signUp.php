@@ -1,7 +1,6 @@
 <?php 
 
-	$emailona = false;
-	$pasahitzona = false;
+	
 
 	if(isset($_POST['email'])){
 		
@@ -25,11 +24,11 @@
 		else if($_POST['pasahitz']!=$_POST['pasahitz2']){
 			echo "Not same password!";
 			echo "<p><a href='../layout.html'>HOMEra itzuli</a>";
-		}else if ($emailona==true && $pasahitzona==true){
+		}else{
 	
 	
-			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-			//$linki= new mysqli("localhost","root","","quiz");
+			//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+			$linki= new mysqli("localhost","root","","quiz");
 
 			$sql="INSERT INTO users(email, dei, pass, arg) VALUES
 				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]')";
@@ -63,6 +62,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 	<script>
+		var emailona=false;
+		var pasahitzona=false;
 		$(document).ready(function(){
 		
 			$('#galderenF').submit(function(){
@@ -74,13 +75,13 @@
 					alert("Pasahitzak ez dute koiziditzen");
 					return fasle;
 				}
-				<?php if($emailona==true && $pasahitzona==true) {?>
+				if(emailona==true && pasahitzona==true) {
 					alert("Ondo erregistratu zara");
 					return true;
-				<?php }else{ ?>
+				}else{ 
 					alert("Zerbait ez da baliozkoa");
 					return false;
-				<?php } ?>
+				 } 
 			});
 		});
 		
@@ -90,10 +91,10 @@
 		if (xhro.readyState==4 && xhro.status==200){
 			var ema=xhro.responseText;
 			if(ema=="BAI"){
-				<?php $emailona=true; ?>
+				emailona=true; 
 				document.getElementById("emaitza").innerHTML= "Emaila BALIOZKOA da";
 			}else{
-				<?php $emailona=false; ?>
+				emailona=false; 
 				document.getElementById("emaitza").innerHTML= "Emaila BALIOGABEA da";
 			}
 		}
@@ -112,22 +113,22 @@
 		if (xhro2.readyState==4 && xhro2.status==200){
 			var ema=xhro2.responseText;
 			if(ema=="BALIOZKOA"){
-				<?php $pasahitzona=true; ?>
-				document.getElementById("emaitza").innerHTML= "Pasahitz ZUZENA idatzi duzu";
+				pasahitzona=true;
+				document.getElementById("emaitzapas").innerHTML= "BALIOZKO pasahitza idatzi duzu";
 			}else if(ema=="BALIOGABEA"){
-				<?php $pasahitzona=false; ?>
-				document.getElementById("emaitza").innerHTML= "Pasahitz OKERRA idatzi duzu";
+				pasahitzona=false;
+				document.getElementById("emaitzapas").innerHTML= "Pasahitz BALIOGABEA idatzi duzu";
 			}else{
-				<?php $pasahitzona=false; ?>
-				document.getElementById("emaitza").innerHTML= "Zerbitzurik GABE";
+				pasahitzona=false; 
+				document.getElementById("emaitzapas").innerHTML= "Zerbitzurik GABE";
 			}
 		}
 			
 	}
 	function egiaztatuPasahitza(){
 		var emai = document.getElementById("pasahitz").value;
-		xhro.open("GET", "configemail.php?pasahitz="+emai, true);
-		xhro.send();
+		xhro2.open("GET", "configpass.php?pasahitz="+emai, true);
+		xhro2.send();
 	}
 	
 		
@@ -152,6 +153,7 @@
     <section class="main" id="s1">
     
 	<div id="emaitza"></div>
+	<div id="emaitzapas"></div>
 	<div>
 		<br>
 		<form id="galderenF" name="galderenF" action="signUp.php" method="post">

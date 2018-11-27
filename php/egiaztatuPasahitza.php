@@ -1,12 +1,11 @@
 <?php
 	
-	require_once('../lib/nusoap.php');
-	require_once('../lib/class.wsdlcache.php');
+	require_once('../nusoap/lib/nusoap.php');
+	require_once('../nusoap/lib/class.wsdlcache.php');
 	
-	
-	//$ns="http://ehusw.es/rosa/webZerbitzuak/batuZerbitzua.php?wsdl";
-	$ns="https://localhost/WS2018/php/egiaztatuPasahitza.php?wsdl";
-	//$ns="egiaztatuPasahitza.php?wsdl";
+	//$ns="http://lanakunibertsitatea.000webhostapp.com/lab6/php/egiaztatuPasahitza.php?wsdl";
+	//$ns="http://localhost/WS2018/php/egiaztatuPasahitza.php?wsdl";
+	$ns="egiaztatuPasahitza.php?wsdl";
 	$server = new soap_server;
 	$server->configureWSDL('egiaztatuP',$ns);
 	$server->wsdl->schemaTargetNamespace=$ns;
@@ -20,7 +19,7 @@
 		else{
 			$file= fopen("../nusoap/toppasswords.txt", "r");
 			while($lerroa = fscanf($file, "%s")){
-				if($x == $lerroa[0]) return "BALIOGABEA";
+				if($x==$lerroa[0]) return "BALIOGABEA";
 			}
 			fclose($file);
 			return "BALIOZKOA";
