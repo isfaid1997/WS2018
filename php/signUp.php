@@ -27,11 +27,11 @@
 		}else{
 	
 	
-			//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-			$linki= new mysqli("localhost","root","","quiz");
+			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+			//$linki= new mysqli("localhost","root","","quiz");
 
-			$sql="INSERT INTO users(email, dei, pass, arg) VALUES
-				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]')";
+			$sql="INSERT INTO users(email, dei, pass, arg, egoera) VALUES
+				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]', 'aktibo')";
 	
 	
 			if (!$linki->query($sql)) {
@@ -109,7 +109,6 @@
 	
 	xhro2 = new XMLHttpRequest();
 	xhro2.onreadystatechange=function(){
-		//alert(xhro.readyState);
 		if (xhro2.readyState==4 && xhro2.status==200){
 			var ema=xhro2.responseText;
 			if(ema=="BALIOZKOA"){
@@ -146,9 +145,9 @@
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='../layout.html'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=null'>Credits</a></span>
+		<span><a href='credits.php'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
     

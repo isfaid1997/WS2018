@@ -1,11 +1,23 @@
 <?php 
 
-
+	session_start ();
+	
+	
 	if(isset($_POST['email'])){
 		$usr_email=$_POST['email'];
+		
+		$_SESSION['var'] = $usr_email;
+		$_SESSION['kau'] = "BAI";
+		
+		if($usr_email == "admin000@ehu.eus"){
+			$_SESSION['rol'] = "admin";
+		}else{
+			$_SESSION['rol'] = "ikasle";
+		}
+		
 		include 'dbConfig.php';
-		//$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
-		$linki= new mysqli("localhost","root","","quiz");
+		$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
+		//$linki= new mysqli("localhost","root","","quiz");
 		$usr_pass=$_POST['pasahitz'];
 		$sql="select * FROM users where email='$usr_email' and pass='$usr_pass'";
 		$result= $linki->query($sql);
@@ -16,7 +28,11 @@
 		$linki->close();
 		if ($rows_cnt==1){
 			$rows_cnt=0;
-			header('location: layoutR.php?log='.$usr_email);
+			if($_SESSION['rol']=="admin"){
+				header('location: handlingAccounts.php');
+			}else{
+				header('location: handlingQuizesAJAX.php');
+			}
 		}
 		else{ echo"<script> alert('Authentication failure!') </script>";
 		}
@@ -53,9 +69,9 @@
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='../layout.html'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
-		<span><a href='credits.php?log=null'>Credits</a></span>
+		<span><a href='credits.php'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
     
@@ -63,7 +79,7 @@
 	<div>
 		<br>
 		<form id="galderenF" name="galderenF" action="logIn.php" method="post">
-			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
+			Emaila(*): <input type="email"  id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
 			Pasahitza(*): <input type="password" id="pasahitz" name="pasahitz"  required><br><br><br>
 		
 			<input type="submit" value="Log in" id="send">

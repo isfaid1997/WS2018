@@ -1,0 +1,40 @@
+	/*function Editatu(user){
+			<?php			
+			$linki2= new mysqli("localhost","root","","quiz");
+
+			$nor=user;
+			$sql2="SELECT egoera FROM users where email=$nor";
+			if (!$linki2->query($sql2)) {
+				die('Errorea: ' . $linki2->error);
+			}else{
+				$ema2= $linki2->query($sql2);
+			}
+			
+			if($ema2=='blokeatuta'){
+				$ema2 = 'aktibo';
+			}else{
+				$ema2 = 'blokeatuta';
+			}
+			$sql3 = "UPDATE users SET egoera=$ema where email=$nor";
+			if (!$linki2->query($sql3)) {
+				die('Errorea: ' . $linki2->error);
+			}
+			$ema2->free();
+			$linki2->close();
+			?>
+		}
+		
+		function Ezabatu(user){
+			<?php
+			$linki3 = new mysqli("localhost","root","","quiz");
+			$nor=user;
+			$sql4="DELETE * FROM users where email=$nor";
+			if (!$linki3->query($sql4)) {
+				die('Errorea: ' . $linki3->error);
+			}else{
+				$ema3= $linki3->query($sql4);
+			}
+			$ema3->free();
+			$linki3->close();
+			?>
+		}*/

@@ -1,6 +1,8 @@
 <?php
 
-	$logeatuta= $_GET['log'];
+	session_start();
+	$logeatuta= $_SESSION['var'];
+	include ("segurtasunaKAU.php");
 	
 ?>
 
@@ -25,27 +27,28 @@
 	<header class='main' id='h1'>
 	<?php echo "<span class='right'> $logeatuta</span>" ?>
 	  </br>
-      <?php echo "<span class='right'><a href='logOut.php?log=$logeatuta'>LogOut</a> </span>" ?>
+      <span class='right'><a href='logOut.php'>LogOut</a> </span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<?php echo "<span><a href='layoutR.php?log=$logeatuta'>Home</a></span>" ?>
+		<span><a href='layoutR.php'>Home</a></span>
 		<span>Quizzes</span>
-		<?php echo "<span><a href='credits.php?log=$logeatuta'>Credits</a></span>" ?>
-		<?php echo "<span><a href='addQuestion.php?log=$logeatuta'>Add questions</a></span>" ?>
-		<?php echo "<span><a href='addQuestion5HTML.php?log=$logeatuta'>Add questions HTML5</a></span>" ?>
-		<?php echo "<span><a href='showQuestions.php?log=$logeatuta'>ShowQuestions</a></span>" ?>
-		<?php echo "<span><a href='../xml/questions.xml'>XML questions</a></span>" ?>
-		<?php echo "<span><a href='showXMLquestions.php?log=$logeatuta'>XML questions PHP</a></span>" ?>
-		<?php echo "<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>" ?>
-		<?php echo "<span><a href='handlingQuizesAJAX.php?log=$logeatuta'>Handling Questions</a></span>" ?>
+		<span><a href='credits.php'>Credits</a></span>
+		<span><a href='addQuestion.php'>Add questions</a></span>
+		<span><a href='addQuestion5HTML.php'>Add questions HTML5</a></span>
+		<span><a href='showQuestions.php'>ShowQuestions</a></span>
+		<span><a href='../xml/questions.xml'>XML questions</a></span>
+		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
+		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
+		<span><a href='handlingQuizesAJAX.php'>Handling Questions</a></span>
+		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
 		
 	</nav>
     <section class="main" id="s1">
     
 	
 	<div>
-	<h4><?php echo"<a href = 'showQuestions.php?log=$logeatuta'> Sakatu hemen datuak ikusteko</a><h4>" ?>
+	<h4><?php echo"<a href = 'showQuestions.php'> Sakatu hemen datuak ikusteko</a><h4>" ?>
 	</div>
     </section>
 	<footer class='main' id='f1'>
