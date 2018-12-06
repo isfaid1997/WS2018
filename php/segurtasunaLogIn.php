@@ -1,6 +1,6 @@
 <?php
 	
-	if ($_SESSION['rol'] != "admin") {
+	if ($_SESSION['kau'] == "BAI") {
 		header("Location: layoutR.php");
 		exit();
 	}

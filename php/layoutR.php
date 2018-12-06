@@ -1,8 +1,8 @@
 <?php
 
 	session_start();
-	$logeatuta= $_SESSION['var'];
 	include ("segurtasunaKAU.php");
+	$logeatuta= $_SESSION['var'];
 	
 ?>
 

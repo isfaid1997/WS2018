@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	if($_SESSION['kau'] == "BAI"){
+	if(isset($_SESSION['kau']) && $_SESSION['kau'] == "BAI"){
 		$logeatuta= $_SESSION['var'];
 	}else{
 		$logeatuta= "anonimous";

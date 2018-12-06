@@ -1,8 +1,6 @@
 ﻿<?php
-
-	session_start();
-	$_SESSION['kau']="EZ";
-
+session_start();
+if(isset($_SESSION['kau'])) include("segurtasunaLogIn.php");
 ?>
 <!DOCTYPE html>
 <html>

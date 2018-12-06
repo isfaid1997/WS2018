@@ -26,13 +26,17 @@
 		else{		
 		$rows_cnt = $result->num_rows;
 		$linki->close();
-		if ($rows_cnt==1){
+		$emaitza = $result->fetch_array(MYSQLI_ASSOC);
+		if ($rows_cnt==1 && $emaitza['egoera']=="aktibo"){
 			$rows_cnt=0;
+			
 			if($_SESSION['rol']=="admin"){
 				header('location: handlingAccounts.php');
 			}else{
 				header('location: handlingQuizesAJAX.php');
 			}
+		}else if($emaitza['egoera']=="blokeatuta"){
+			echo "<script> alert('Blokeatuta zaude eta ezin duzu log in egin!') </script>";
 		}
 		else{ echo"<script> alert('Authentication failure!') </script>";
 		}
