@@ -1,11 +1,10 @@
 <?php
 
 	session_start();
-	if(isset($_SESSION['kau']) && $_SESSION['kau'] == "BAI"){
-		$logeatuta= $_SESSION['var'];
-	}else{
-		$logeatuta= "anonimous";
-	}
+	if(!isset($_SESSION['var'])){ 
+		$_SESSION['var'] = "anonimous";
+	}	
+	$logeatuta= $_SESSION['var'];
 	
 ?>
 <!DOCTYPE html>
@@ -46,17 +45,12 @@
 		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
+		<span class="right"><a href="getNewPassword.php">Recover password</a> </span>
 	<?php }else{ ?>
-		<span><a href='layoutR.php'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span><a href='addQuestion.php'>Add questions</a></span>
-		<span><a href='addQuestion5HTML.php'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
-		<span><a href='handlingQuizesAJAX.php'>Handling Questions</a></span>
+		<?php if ($_SESSION['rol'] == "ikasle") echo "<span><a href='handlingQuizesAJAX.php'>Handling Quizzes</a></span>" ?>
 		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
 	<?php } ?>
 	</nav>

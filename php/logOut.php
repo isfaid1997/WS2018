@@ -2,7 +2,7 @@
 
 	session_start();
 	$logeatuta= $_SESSION['var'];
-	include ("segurtasunaKAU.php");
+	include ("segurtasunaAnon.php");
 	
 ?>
 <html>
@@ -33,16 +33,10 @@
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='layoutR.php'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span><a href='addQuestion.php'>Add questions</a></span>
-		<span><a href='addQuestion5HTML.php'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
-		<span><a href='handlingQuizesAJAX.php'>Handling Questions</a></span>
+		<?php if ($_SESSION['rol'] == "ikasle") echo "<span><a href='handlingQuizesAJAX.php'>Handling Quizzes</a></span>" ?>
 		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
 		
 	</nav>
@@ -53,7 +47,7 @@
 		
 		Do you want to log out?<br>
 		<input type="submit" value="Yes" id="irten" onclick="location.href='destroySession.php'">
-		<input type="submit" value="No" id="geratu" onclick="location.href='layoutR.php'">
+		<input type="submit" value="No" id="geratu" onclick="location.href='layout.php'">
 	</div>
     </section>
 	<footer class='main' id='f1'>

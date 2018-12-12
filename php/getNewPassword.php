@@ -1,47 +1,34 @@
-<?php 
+<?php
 session_start();
 include("segurtasunaNotAnon.php");
 	
 	if(isset($_POST['email'])){
 		$usr_email=$_POST['email'];
-		
-		
 		include 'dbConfig.php';
 		$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
 		//$linki= new mysqli("localhost","root","","quiz");
-		$usr_pass=$_POST['pasahitz'];
 		$sql="select * FROM users where email='$usr_email'";
 		$result= $linki->query($sql);
-		if(!($result)){echo "Error in the query". $result->error;
+		if(!($result)){
+			echo "Error in the query". $result->error;
 		}
-		else{	
-			$emaitza=$result->fetch_array(MYSQLI_ASSOC);
-			if(password_verify($usr_pass, $emaitza['pass'])){
-				$rows_cnt = $result->num_rows;
-				$linki->close();
-				if ($rows_cnt==1 && $emaitza['egoera']=="aktibo"){
-					$rows_cnt=0;
-					$_SESSION['var'] = $usr_email;
-		
-					if($usr_email == "admin000@ehu.eus"){
-						$_SESSION['rol'] = "admin";
-					}else{
-						$_SESSION['rol'] = "ikasle";
-					}
-					if($_SESSION['rol']=="admin"){
-						//header('location: handlingAccounts.php');
-						echo "<script>location.href='handlingAccounts.php'</script>";
-					}else{
-						//header('location: handlingQuizesAJAX.php');
-						echo "<script>location.href='handlingQuizesAJAX.php'</script>";
-					}
-				}else if($emaitza['egoera']=="blokeatuta"){
-					echo "<script> alert('Blokeatuta zaude eta ezin duzu log in egin!') </script>";
+		else{
+			$rows_cnt = $result->num_rows;
+			if($rows_cnt==1){
+				$rows_cnt=0;
+				$str = substr(base64_encode(sha1(mt_rand())),0,10);
+				$passHash = password_hash($str, PASSWORD_BCRYPT);
+				mail($usr_email, 'Pasahitz berria','Zure pasahitz berria hau da: '.$str, 'FROM: admin000@ehu.eus');
+				$sql2="UPDATE users SET pass='$passHash' where email='$usr_email'";
+				$result2= $linki->query($sql2);
+				if(!($result2)){
+					echo "Error in the query". $result2->error;
 				}
-				else{ echo"<script> alert('Authentication failure!') </script>";
+				else{	
+					echo "<script>alert('Emailera mezu bat bidali dizugu pasahitz berriarekin')</script>";	
 				}
 			}else{
-				echo"<script> alert('Incorrect password or email has been written!') </script>";
+				echo "<script>alert('Jarri duzun emaila ez dago erregistratua')</script>";
 			}
 		}
 	}
@@ -78,18 +65,17 @@ include("segurtasunaNotAnon.php");
 		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span><a href='getNewPassword.php'>Recover Password</a></span>
+		<span class="right"><a href="getNewPassword.php">Recover password</a> </span>
 	</nav>
     <section class="main" id="s1">
     
 	
 	<div>
 		<br>
-		<form id="galderenF" name="galderenF" action="logIn.php" method="post">
+		<form id="galderenF" name="galderenF" action="getNewPassword.php" method="post">
 			Emaila(*): <input type="email"  id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" required><br>
-			Pasahitza(*): <input type="password" id="pasahitz" name="pasahitz"  required><br><br><br>
-		
-			<input type="submit" value="Log in" id="send">
+			<br>
+			<input type="submit" value="Recover password" id="send">
 		</form>
 		<br><br><br>
 		<br><br><br>
@@ -101,3 +87,4 @@ include("segurtasunaNotAnon.php");
 </div>
 </body>
 </html>
+

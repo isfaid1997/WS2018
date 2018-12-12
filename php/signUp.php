@@ -1,7 +1,6 @@
 <?php 
-
-	session_start();
-
+session_start();
+include("segurtasunaNotAnon.php");
 	if(isset($_POST['email'])){
 		
 		include 'dbConfig.php';
@@ -26,19 +25,22 @@
 			echo "<p><a href='../layout.html'>HOMEra itzuli</a>";
 		}else{
 	
-	
+			$pass = $_POST['pasahitz'];    
+			$passHash = password_hash($pass, PASSWORD_BCRYPT);
+			
 			$linki= new mysqli("localhost","id7176205_egoisa","egoisa1997","id7176205_quiz");
 			//$linki= new mysqli("localhost","root","","quiz");
 
 			$sql="INSERT INTO users(email, dei, pass, arg, egoera) VALUES
-				('$_POST[email]' , '$_POST[deitura]' ,'$_POST[pasahitz]', '$_POST[argazkia]', 'aktibo')";
+				('$_POST[email]' , '$_POST[deitura]' ,'$passHash', '$_POST[argazkia]', 'aktibo')";
 	
 	
 			if (!$linki->query($sql)) {
 				die('Errorea: ' . $linki->error);
 			}
 		
-			header('location: logIn.php');
+			echo "<script>location.href='logIn.php'</script>";
+			
 			$linki->close();
 		
 		}
@@ -148,6 +150,7 @@
 		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
+		<span><a href='getNewPassword.php'>Recover Password</a></span>
 	</nav>
     <section class="main" id="s1">
     
@@ -156,7 +159,7 @@
 	<div>
 		<br>
 		<form id="galderenF" name="galderenF" action="signUp.php" method="post">
-			Emaila(*): <input type="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" id="email" name="email" placeholder="xxx000@ikasle.ehu.eus" onchange="egiaztatuEmaila()" required><br>
+			Emaila(*): <input type="email" id="email" name="email" pattern="[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus" placeholder="xxx000@ikasle.ehu.eus" onchange="egiaztatuEmaila()" required><br>
 			Deitura(*): <input type="text" id="deitura" name="deitura" pattern="[A-Z][a-z]*(\s[A-Z][a-z]*)+" placeholder="10 karaktere gutxienez" required><br>
 			Pasahitza(*): <input type="password" id="pasahitz" name="pasahitz" pattern="[a-zA-Z0-9]{8,}" onchange="egiaztatuPasahitza()"required><br>
 			Pasahitza errepikatu(*): <input type="password" id="pasahitz2" name="pasahitz2" pattern="[a-zA-Z0-9]{8,}" required><br>

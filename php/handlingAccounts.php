@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	$logeatuta= $_SESSION['var'];
-	include ("segurtasuna.php");
+	include ("segurtasunaAccounts.php");
 ?>
 <html>
   <head>
@@ -78,13 +78,6 @@
 		<span><a href='layoutR.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span><a href='addQuestion.php'>Add questions</a></span>
-		<span><a href='addQuestion5HTML.php'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php?'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
-		<span><a href='handlingQuizesAJAX.php'>Handling Questions</a></span>
 		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
 
 	
@@ -117,7 +110,7 @@
 		
 		echo "<table border=1> <tr> <th>EMAILA</th> <th>DEITURAK</th> <th>PASAHITZA</th> <th>EGOERA</th> <th>EDITATU EGOERA</th> <th>EZABATU</th></tr>";
 		while($row= $ema->fetch_array(MYSQLI_ASSOC)){
-			echo"<tr><td class='email'>".$row['email']."</td><td>".$row['dei']."</td> <td>".$row['pass']."</td> <td class='egoera'>".$row['egoera']."</td>
+			echo"<tr><td class='email'>".$row['email']."</td><td>".$row['dei']."</td> <td><marquee width='220px'>".$row['pass']."</marquee></td> <td class='egoera'>".$row['egoera']."</td>
 			<td><button class='editatu'>Egoera editatu</button></td>
 			<td><button class='ezabatu'>Ezabatu</button></td></tr>";
 		}

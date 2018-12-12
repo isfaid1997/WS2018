@@ -2,7 +2,7 @@
 
 	session_start();
 	$logeatuta= $_SESSION['var'];
-	include ("segurtasunaKAU.php");
+	include ("segurtasunaQuizzes.php");
 	
 ?>
 <html>
@@ -38,10 +38,12 @@
 		  var i;
 		  var zerbait=false;
 		  var xmlDoc = xml.responseXML;
-		  var table="<tr><th>Galdera</th><th>Title</th></tr>";
+		  var table="<tr><th>Galdera</th><th>Erantzuna</th></tr>";
 		  var x = xmlDoc.getElementsByTagName("assessmentItem");
+		  var kont = 0;
 		  for (i = 0; i <x.length; i++) {
 			if(x[i].getAttribute("author")=="<?php echo "$logeatuta" ?>"){
+				kont++;
 				table += "<tr><td>" +
 				x[i].getElementsByTagName("p")[0].childNodes[0].nodeValue +
 				"</td><td>" +
@@ -52,6 +54,7 @@
 		  }
 		  if(!zerbait) table = "<tr><th> Ez daukazu galderarik sortuta</th></tr>";
 		  document.getElementById("emaitza").innerHTML = table;
+		  document.getElementById("guztira").innerHTML = "Zure galderak "+kont+" / "+x.length+" guztiratik";
 		}
 		
 		$(document).ready(function(){
@@ -88,16 +91,10 @@
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='layoutR.php'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span><a href='addQuestion.php'>Add questions</a></span>
-		<span><a href='addQuestion5HTML.php'>Add questions HTML5</a></span>
-		<span><a href='showQuestions.php'>ShowQuestions</a></span>
-		<span><a href='../xml/questions.xml'>XML questions</a></span>
-		<span><a href='showXMLquestions.php'>XML questions PHP</a></span>
-		<span><a href='../xml/questionsTransAuto.xml'>XML trans auto</a></span>
-		<span><a href='handlingQuizesAJAX.php'>Handling Questions</a></span>
+		<span><a href='handlingQuizesAJAX.php'>Handling Quizzes</a></span>
 		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
 	</nav>
 	
@@ -105,10 +102,11 @@
 	<div class="column">
 		<input type="button" value="View question" id="view" name="view" onclick="datuakEskatu()">
 		<br><br>
+		<div id="guztira" style="background-color:#ffffff;"></div><br>
 		<table id="emaitza" style="background-color:#ffffff;">
 			<tr><th>Galderak hemen agertuko dira...</th></tr>
 		</table>
-	</div>
+	</div >
 	<div class="column">
 		<?php echo "<form id='galderenF' name='galderenF' method='post'>" ?>
 		<?php echo"Emaila(*): <input type='email' pattern='[a-zA-Z]{3,}[0-9]{3}@ikasle\.ehu\.eus' id='email' name='email' value='$logeatuta' 
