@@ -45,7 +45,7 @@
 		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
-		<span class="right"><a href="getNewPassword.php">Recover password</a> </span>
+		<span class="right"><a href="getNewPassword.php">Recover Password</a> </span>
 	<?php }else{ ?>
 		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>

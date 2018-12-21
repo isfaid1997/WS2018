@@ -75,7 +75,7 @@
 	
 	
 	
-		<span><a href='layoutR.php'>Home</a></span>
+		<span><a href='layout.php'>Home</a></span>
 		<span>Quizzes</span>
 		<span><a href='credits.php'>Credits</a></span>
 		<?php if ($_SESSION['rol'] == "admin") echo "<span><a href='handlingAccounts.php'>Handling Accounts</a></span>" ?>
